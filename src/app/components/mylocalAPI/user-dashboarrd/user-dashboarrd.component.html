@@ -1,0 +1,50 @@
+<div class="d-flex p-2 justify-content-between">
+    <div>
+        <button class="rounded-2 small text-white bg-dark p-4 pt-2 pb-2" (click)="backtoPage()">Back</button>
+    </div>
+    <div>
+        <!-- <button class="rounded-2 small text-white bg-dark p-4 pt-2 pb-2" (click)="openCreateForm()">Add</button> -->
+    </div>
+</div>
+<div class="mt-4" style="height: 400px; overflow: auto;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mtable">
+
+        <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Qualification">
+            <th mat-header-cell *matHeaderCellDef> Qualification </th>
+            <td mat-cell *matCellDef="let element"> {{element.Qualification}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Blog_Name">
+            <th mat-header-cell *matHeaderCellDef> Blog Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.Blog_Name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Blog_Details">
+            <th mat-header-cell *matHeaderCellDef> Blog Details </th>
+            <td mat-cell *matCellDef="let element"> {{element.Blog_Details}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Mobile_No">
+            <th mat-header-cell *matHeaderCellDef> Mobile No </th>
+            <td mat-cell *matCellDef="let element"> {{element.Mobile_No}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

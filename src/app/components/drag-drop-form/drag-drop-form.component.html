@@ -1,0 +1,163 @@
+<div class="container  ">
+    <div class="d-flex justify-content-center mt-2">
+        <h1 class="">Drag and Drop form</h1>
+    </div>
+    <div class="form-builder d-flex justify-content-center mt-2" cdkDropListGroup>
+
+        <!-- Sidebar with form elements -->
+        <div class="form-elements">
+            <h3>Form Elements</h3>
+            <div cdkDropList [cdkDropListData]="formElements" [cdkDropListConnectedTo]="'formCanvas'"
+                class="element-list" (cdkDropListDropped)="drop($event)">
+
+
+                @for(element of formElements;track element){
+                <div class="element" cdkDrag>
+                    {{ element.label }}
+                </div>
+                }
+
+            </div>
+        </div>
+
+        <!-- Canvas to drop and build form -->
+        <div class="form-canvas" cdkDropList id="formCanvas" [cdkDropListData]="formControls"
+            (cdkDropListDropped)="drop($event)">
+            <h3>Form Canvas</h3>
+
+
+            <!-- @if(formElements.length == 6){ -->
+            @if(formControls.length == 0){
+            <div class="d-flex justify-content-center">
+
+                <div class="dragEmtDiv  p-4 d-flex flex-nowrap">
+                    <h4>Drop Form Elements</h4>
+                </div>
+            </div>
+            }@else {
+            <form [formGroup]="dragdropform">
+
+                @for(control of formControls;track control;let i = $index){
+                <div class="form-element-wrapper " cdkDrag>
+                    @if(control.type == 'text'|| control.type == 'email'){
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <mat-form-field class="no-underline custom-field" appearance="fill">
+                                <!-- <mat-label>{{ control.label }}</mat-label> -->
+                                <input matInput [type]="control.type" [formControlName]="control.controlName"
+                                    [required]="control.required" [placeholder]="control.label" class="custom-input" />
+
+                            </mat-form-field>
+
+                            @if(this.dragdropform.get(control.controlName)?.touched ||
+                            this.dragdropform.get(control.controlName)?.dirty){
+
+                            @if(getErrorMessage(control.controlName, control)){
+                            <mat-error class="errordiv text-danger word-wrap">
+                                {{ getErrorMessage(control.controlName, control) }}
+                            </mat-error>
+                            }
+
+                            }
+                        </div>
+                        <div class="">
+                            <button class="remove-btn p-2" (click)="removeControl(i,control.controlName)"
+                                matTooltip="Name box drop to form element" matTooltipPosition="right" mat-raised-button
+                                matTooltipClass="custom-tooltip">
+                                <mat-icon
+                                    class="mat-del-btn align-items-center align-self-center mt-2">delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    }
+                    @if(control.type == 'select'){
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <mat-form-field class="no-underline custom-field" appearance="fill">
+                                <mat-select [formControlName]="control.controlName" class="matSelect"
+                                    placeholder="Country">
+                                    @for(item of control.options;track item){
+                                    <mat-option [value]="item">{{item}}</mat-option>
+                                    }
+                                </mat-select>
+
+                            </mat-form-field>
+
+                        </div>
+                        <div class="">
+                            <button class="remove-btn  p-2" (click)="removeControl(i,control.controlName)"
+                                matTooltip="Country box drop to form element" matTooltipPosition="right"
+                                mat-raised-button matTooltipClass="custom-tooltip">
+                                <mat-icon
+                                    class="mat-del-btn align-items-center align-self-center mt-2">delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    }
+                    @if(control.type == 'date'){
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            <mat-form-field class="no-underline custom-field">
+                                <div class="d-flex justify-content-between">
+                                    <div class="">
+                                        <input matInput [matDatepicker]="picker" matInput
+                                            [formControlName]="control.controlName" class=" custom-input"
+                                            placeholder="Date" readonly>
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                </div>
+                            </mat-form-field>
+                        </div>
+                        <div class="">
+                            <button class="remove-btn p-2" (click)="removeControl(i,control.controlName)"
+                                matTooltip="Date box drop to form element" matTooltipPosition="right" mat-raised-button
+                                matTooltipClass="custom-tooltip">
+                                <mat-icon
+                                    class="mat-del-btn align-items-center align-self-center mt-2">delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    }
+                    @if(control.type == 'checkbox' ){
+                    <div class="d-flex justify-content-between custom-field">
+                        <div class="no-underline custom-field">
+                            <mat-checkbox matInput type="checkbox" [formControlName]="control.controlName"
+                                class="custom-input" [checked]="isChecked()"
+                                (change)="onCheckboxChange($event.checked)">
+                                <span class="Acceptlabel">Accept
+                                    Terms</span></mat-checkbox>
+                        </div>
+
+                        <div class="">
+                            <button class="remove-btn  p-2" (click)="removeControl(i,control.controlName)"
+                                matTooltip="Terms box drop to form element" matTooltipPosition="right" mat-raised-button
+                                matTooltipClass="custom-tooltip">
+                                <mat-icon class="mat-del-btn mt-2">delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    }
+
+
+                </div>
+                }
+                <div class="d-flex justify-content-between  ">
+                    <button type="button" (click)="onSubmit()" class="bottomBtn">Save Form</button>
+                    <button mat-button class="bottomBtn" (click)="reset()" matTooltip="Clear Form"
+                        matTooltipPosition="right" mat-raised-button matTooltipClass="custom-tooltip">Clear
+                        Form</button>
+                </div>
+            </form>
+            }
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>

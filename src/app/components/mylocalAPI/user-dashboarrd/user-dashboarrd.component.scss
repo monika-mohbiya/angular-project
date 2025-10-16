@@ -1,0 +1,23 @@
+.mat-header-row {
+    z-index: 9999 !important;
+}
+
+::ng-deep .mat-mdc-header-row {
+    z-index: 999999 !important;
+    /* Higher z-index for the header */
+    position: sticky;
+    /* Ensure it stays on top */
+    top: 0;
+    /* Stick to the top */
+    background: black !important;
+    color: white !important;
+    /* Add background to avoid transparency */
+}
+
+::ng-deep .mat-mdc-row {
+    z-index: 99 !important;
+}
+
+.mtable {
+    border: 1px solid gray;
+}

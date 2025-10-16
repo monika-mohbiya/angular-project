@@ -1,0 +1,16 @@
+<mat-toolbar class="main-toolbarheader">
+    <!-- Menu Icon (optional for mobile view) -->
+    <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Application Title -->
+    <span style="margin-left: 8px; flex: 1;">Dummy Json Application</span>
+
+    <!-- Navigation Links -->
+    <button mat-button (click)="routeNav('dashboard')">Home</button>
+    <button mat-button (click)="routeNav('ddform')">drag & drop form</button>
+    <button mat-button (click)="routeNav('dynamicform')">Dynamic field form</button>
+    <button mat-button (click)="routeNav('fcm-token')">FCM token</button>
+    <button mat-button (click)="routeNav('user-dashboard')">dashboard</button> <!-- localAPI -->
+</mat-toolbar>
