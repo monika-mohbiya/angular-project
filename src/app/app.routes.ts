@@ -4,13 +4,12 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { DragDropFormComponent } from './components/drag-drop-form/drag-drop-form.component';
 import { DynamicformfieldComponent } from './components/dynamicformfield/dynamicformfield.component';
-import { ChildcardComponent } from './commoncard/childcard/childcard.component';
-import { MainLayoutComponent } from './main-layout';
 import { AuthLayoutComponent } from './auth-layout';
 import { FCMTokenComponent } from './components/fcm-token/fcm-token.component';
 import { DasViewCardComponent } from './components/das-card/das-view-card/das-view-card.component';
 import { UserDashboarrdComponent } from './components/mylocalAPI/user-dashboarrd/user-dashboarrd.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { MainpageComponent } from './components/mainpage/mainpage.component';
 
 export const routes: Routes = [
     {
@@ -23,7 +22,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        component: MainLayoutComponent,
+        component: MainpageComponent,
         canActivate: [canActivateGuard],
         children: [
             { path: 'dashboard', component: DashboardComponent },

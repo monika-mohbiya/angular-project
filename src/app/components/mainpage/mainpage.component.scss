@@ -1,0 +1,143 @@
+/* Optional styling for toolbar */
+mat-toolbar {
+    display: flex;
+    align-items: center;
+}
+
+// .main-toolbarheader {
+//     background: lightgray;
+// }
+
+::ng-deep .custom-tooltip {
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    position: relative !important;
+    right: 20px !important;
+}
+
+::ng-deep .custom-tooltip::after {
+    content: '';
+    font-size: 10px;
+    position: absolute;
+    left: -11px;
+    position: absolute;
+    top: 8px;
+    transform: rotate(-90deg);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #e74c3c transparent;
+}
+
+/* Main container for sidenav and content */
+.main-container {
+    height: 100vh;
+    /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+
+    mat-sidenav-container,
+    mat-sidenav-content {
+        height: 100%;
+    }
+}
+
+/* ===============================
+   FIXED TOOLBAR HEADER
+================================ */
+.main-toolbarheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: #1976d2;
+    /* Material Blue */
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* App title */
+.app-title {
+    flex: 1;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/* ===============================
+   NAVIGATION LINKS
+================================ */
+.nav-links {
+    display: flex;
+    gap: 10px;
+
+    button {
+        color: white;
+        font-weight: 500;
+    }
+}
+
+/* Hide menu button on large screens */
+.menu-button {
+    display: none;
+    color: white;
+}
+
+/* ===============================
+   SIDE NAVIGATION DRAWER
+================================ */
+.side-nav {
+    width: 220px;
+    background-color: #f5f5f5;
+    padding-top: 64px;
+    /* so content doesn't hide under toolbar */
+}
+
+.side-nav a {
+    color: #333;
+    font-weight: 500;
+    border-radius: 6px;
+    margin: 4px 8px;
+
+    &:hover {
+        background-color: #e0e0e0;
+    }
+}
+
+/* ===============================
+   MAIN CONTENT AREA
+================================ */
+.content {
+    margin-top: 64px;
+    /* Push content below the fixed header */
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+    background-color: #fafafa;
+    min-height: calc(100vh - 64px);
+}
+
+/* ===============================
+   RESPONSIVE DESIGN
+================================ */
+@media (max-width: 768px) {
+
+    /* Show menu button on mobile */
+    .menu-button {
+        display: inline-flex;
+    }
+
+    /* Hide nav links on mobile */
+    .nav-links {
+        display: none;
+    }
+
+    .side-nav {
+        padding-top: 0;
+    }
+}

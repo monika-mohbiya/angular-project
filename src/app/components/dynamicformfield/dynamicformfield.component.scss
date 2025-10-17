@@ -115,3 +115,17 @@
     border-style: solid;
     border-color: transparent transparent #e74c3c transparent;
 }
+
+::ng-deep .mat-mdc-form-field {
+    width: 100%;
+}
+
+@media (max-width: 425spx) {
+    ::ng-deep.mat-mdc-text-field-wrapper {
+        min-width: 300px !important;
+    }
+
+    .main_matcard {
+        padding: 0 !important;
+    }
+}

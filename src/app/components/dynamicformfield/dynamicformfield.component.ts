@@ -36,13 +36,43 @@ export class DynamicformfieldComponent {
   constructor() { }
   ngOnInit() {
     const formDataSTG = localStorage.getItem('Dynamic Form Data');
-    this.dynamicform = new FormGroup({});
+    // this.dynamicform = new FormGroup({});
 
-    this.formElements.forEach(control => {
-      this.dynamicform.addControl(
-        control.controlName,
-        new FormControl('', this.buildValidators(control))
-      );
+    // this.formElements.forEach(control => {
+    //   this.dynamicform.addControl(
+    //     control.controlName,
+    //     new FormControl('', this.buildValidators(control))
+    //   );
+    // });
+    this.dynamicform = new FormGroup({
+      Name: new FormControl('', [
+        Validators.minLength(3),
+        Validators.maxLength(30),
+        this.dynamicPatternValidator({
+          requiredPattern: /^[A-Za-z]+( [A-Za-z]+)*$/,
+          errorKey: 'nottxt'
+        })
+      ]),
+      Email: new FormControl('', [
+        this.dynamicPatternValidator({
+          requiredPattern: /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+          errorKey: 'notEmail'
+        })
+      ]),
+      Number: new FormControl('',
+        [
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          this.dynamicPatternValidator({
+            // requiredPattern: /^\d{10}$/,   // exactly 10 digits
+            forbiddenPattern: /[a-zA-Z]/,  // no letters allowed
+            errorKey: 'notNumber'
+          })
+        ]),
+      Date: new FormControl(''),
+      Country: new FormControl(''),
+      Terms: new FormControl(''),
+
     });
     if (formDataSTG) {
       const formData = JSON.parse(formDataSTG);
@@ -105,42 +135,42 @@ export class DynamicformfieldComponent {
   onCheckboxChange(val: boolean) {
     this.isChecked.set(val);
   }
-  buildValidators(control: any) {
-    const validators = [];
+  // buildValidators(control: any) {
+  //   const validators = [];
 
-    // Required
-    if (control.required) {
-      validators.push(Validators.required);
-    }
+  //   // Required
+  //   if (control.required) {
+  //     validators.push(Validators.required);
+  //   }
 
-    // Min length
-    if (control.minLength != null) {
-      validators.push(Validators.minLength(Number(control.minLength)));
-    }
+  //   // Min length
+  //   if (control.minLength != null) {
+  //     validators.push(Validators.minLength(Number(control.minLength)));
+  //   }
 
-    // Max length
-    if (control.maxLength != null) {
-      validators.push(Validators.maxLength(Number(control.maxLength)));
-    }
+  //   // Max length
+  //   if (control.maxLength != null) {
+  //     validators.push(Validators.maxLength(Number(control.maxLength)));
+  //   }
 
-    // Pattern
-    if (control.pattern) {
-      validators.push(Validators.pattern(control.pattern));
-    }
+  //   // Pattern
+  //   if (control.pattern) {
+  //     validators.push(Validators.pattern(control.pattern));
+  //   }
 
-    // Custom dynamic pattern (like forbiddenPattern / requiredPattern)
-    if (control.forbiddenPattern || control.requiredPattern) {
-      validators.push(
-        this.dynamicPatternValidator({
-          requiredPattern: control.requiredPattern,
-          forbiddenPattern: control.forbiddenPattern,
-          errorKey: control.errorKey || 'patternError'
-        })
-      );
-    }
+  //   // Custom dynamic pattern (like forbiddenPattern / requiredPattern)
+  //   if (control.forbiddenPattern || control.requiredPattern) {
+  //     validators.push(
+  //       this.dynamicPatternValidator({
+  //         requiredPattern: control.requiredPattern,
+  //         forbiddenPattern: control.forbiddenPattern,
+  //         errorKey: control.errorKey || 'patternError'
+  //       })
+  //     );
+  //   }
 
-    return validators;
-  }
+  //   return validators;
+  // }
 
   dynamicPatternValidator({
     requiredPattern,
