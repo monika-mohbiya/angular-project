@@ -15,11 +15,16 @@ export class DummyJsonService {
 
 
   async login(data: any): Promise<any> {
-    console.log(data)
-    return await
-      this.http.post(this.apiURL + 'auth/login', data, {
-        headers: { 'Content-Type': 'application/json' }
-      })
+    // console.log(data)
+    return await this.http.post(
+      'https://dummyjson.com/auth/login',
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
   }
   async product(): Promise<any> {
