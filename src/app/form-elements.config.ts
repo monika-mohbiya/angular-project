@@ -14,12 +14,5 @@ export const formElements = [
 
 
 
-    { type: 'text', label: 'Text Input', placeholder: 'Blog Name', controlName: 'Blog_Name', pattern: '^[A-Za-z]+( [A-Za-z]+)*$', minLength: 3, maxLength: 30, required: true, requiredPattern: /^[A-Za-z]+( [A-Za-z]+)*$/, errorKey: 'nottxt', txttype: 'word' },
-    { type: 'text', label: 'Text Input', placeholder: 'Blog Details', controlName: 'Blog_Details', pattern: '^[A-Za-z]+( [A-Za-z]+)*$', minLength: 3, maxLength: 500, required: true, requiredPattern: /^[A-Za-z]+( [A-Za-z]+)*$/, errorKey: 'nottxt', txttype: 'word' },
-    {
-        type: 'text', label: 'Number Input', placeholder: 'Mobile No', controlName: 'Mobile_No', pattern: '^[0-9]+$', minLength: 10, maxLength: 10, required: true, txttype: 'number', requiredPattern: /^[0-9]+$/,
-        errorKey: 'notNumber'
-    },
-    { type: 'text', label: 'Text Input', placeholder: 'Qualification', controlName: 'Qualification', pattern: '', minLength: null, maxLength: null, required: true, errorKey: 'nottxt', txttype: 'word' },
-    { type: 'text', label: 'Text Input', placeholder: 'Address', controlName: 'Address', pattern: '^[A-Za-z]+( [A-Za-z]+)*$', minLength: 3, maxLength: 30, required: true, errorKey: 'nottxt', txttype: 'word' },
+
 ];

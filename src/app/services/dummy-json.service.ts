@@ -15,9 +15,12 @@ export class DummyJsonService {
 
 
   async login(data: any): Promise<any> {
-    return await firstValueFrom(
-      this.http.post(this.apiURL + 'auth/login', data)
-    );
+    console.log(data)
+    return await
+      this.http.post(this.apiURL + 'auth/login', data, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+
   }
   async product(): Promise<any> {
     return await firstValueFrom(
