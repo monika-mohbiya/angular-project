@@ -13,6 +13,4 @@ export const formElements = [
     { type: 'checkbox', label: 'Accept Terms', placeholder: 'Terms', controlName: 'Terms', pattern: '', minLength: null, maxLength: null, required: true },
 
 
-
-
 ];

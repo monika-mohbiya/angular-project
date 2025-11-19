@@ -8,8 +8,8 @@
                     <mat-form-field class="no-underline">
                         <!-- <mat-label>Username</mat-label> -->
                         <mat-icon matPrefix>person</mat-icon>
-                        <input matInput class="custom-input" formControlName="username" autocomplete="username"
-                            required>
+                        <input matInput class="custom-input" formControlName="username" autocomplete="username" required
+                            placeholder="Name">
                     </mat-form-field>
                     @if(Username?.invalid && Username?.touched || Username?.dirty || submitted){
                     <div class="errordiv">
@@ -31,7 +31,7 @@
                     <mat-form-field class="no-underline">
                         <mat-icon matPrefix>password</mat-icon>
                         <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
-                            class="custom-input" autocomplete="password" required>
+                            class="custom-input" autocomplete="password" required placeholder="password">
                         <mat-icon-button matSuffix type="button" (click)="hide = !hide" class="p-2">
                             <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                         </mat-icon-button>
